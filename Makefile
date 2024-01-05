@@ -6,8 +6,8 @@ export
 postgres:
 	sudo docker start warehouse || sudo docker run --name warehouse -p 5432:5432 -e POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) -e POSTGRES_DB=warehouse -d postgres
 
-.PHONY: disable-postgres
-disable-postgres:
+.PHONY: stop-postgres
+stop-postgres:
 	sudo docker stop warehouse
 
 .PHONY: drop-postgres
