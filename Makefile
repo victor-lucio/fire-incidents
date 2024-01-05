@@ -12,4 +12,5 @@ stop-postgres:
 
 .PHONY: drop-postgres
 drop-postgres:
+	sudo docker stop warehouse
 	sudo docker rm warehouse
