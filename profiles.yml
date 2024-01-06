@@ -1,0 +1,12 @@
+fire_incidents:
+  outputs:
+    dev:
+      dbname: warehouse
+      host: localhost
+      pass: supersecret
+      port: 5432
+      schema: public
+      threads: 1
+      type: postgres
+      user: postgres
+  target: dev
