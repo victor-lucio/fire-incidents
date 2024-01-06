@@ -9,7 +9,14 @@ readme = "README.md"
 python = "^3.11"
 sodapy = "^2.2.0"
 dbt-postgres = "^1.7.4"
+loguru = "^0.7.2"
+pandas = "^2.1.4"
+sqlalchemy = "^2.0.25"
+psycopg2 = "^2.9.9"
 
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.1.11"
 
 [build-system]
 requires = ["poetry-core"]
