@@ -2,6 +2,7 @@
 
 ![Python 3.11](https://img.shields.io/badge/python-3.11-blue)
 ![Ruff](https://img.shields.io/badge/ruff-v0.1.11-green)
+![Pre Commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)
 ![dbt](https://img.shields.io/badge/dbt-1.7.4-orange)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
