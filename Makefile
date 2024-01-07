@@ -15,6 +15,12 @@ spin-up:
 	make start-postgres
 	cp profiles.yml ~/.dbt/profiles.yml
 	export $(cat .env | xargs)
+	echo localhost:5432:warehouse:postgres:$(POSTGRES_PASSWORD) > ~/.pgpass
+	chmod 0600 ~/.pgpass
+
+.PHONY: access-postgres
+access-postgres:
+	psql -h localhost -U postgres -d warehouse
 
 .PHONY: stop-postgres
 stop-postgres:
