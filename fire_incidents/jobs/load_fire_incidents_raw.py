@@ -13,13 +13,13 @@ DATE_COL = "incident_date"
 class LoadFireIncidentRaw:
     def __init__(self, **args) -> None:
         self.args = args
-        self.start_date = args.get("start_date")
+        self.run_date = args.get("run_date")
 
     def run(self) -> None:
         # Get data from Socrata
         client = SocrataClient(DOMAIN)
         data = client.get_data(
-            DATASET, where=f"{DATE_COL}='{self.start_date}T00:00:00'"
+            DATASET, where=f"{DATE_COL}='{self.run_date}T00:00:00'"
         )
 
         # Convert to DataFrame, force string type
