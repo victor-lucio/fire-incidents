@@ -33,8 +33,7 @@ class LoadFireIncidentRaw:
             database=Secrets.get("POSTGRES_DATABASE"),
             port=5432,
         )
-        loader.push_data(data_df, table_name="fire_incidents_raw")
-        # stop
+        loader.push_data(data_df, table_name="fire_incidents_raw", schema="raw")
 
 
 if __name__ == "__main__":
