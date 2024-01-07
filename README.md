@@ -1,7 +1,8 @@
 # Fire Incidents
 
 ![Python 3.11](https://img.shields.io/badge/python-3.11-blue)
-![Ruff](https://img.shields.io/badge/ruff-v0.1.11-green)
+![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)
+![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v1.json)
 ![Pre Commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)
 ![dbt](https://img.shields.io/badge/dbt-1.7.4-orange)
 ![License](https://img.shields.io/badge/license-MIT-blue)
@@ -17,7 +18,10 @@ This repository contains data and code for analyzing fire incidents.
 
 ## Installation
 
-Describe how to install all the dependencies and how to run your project.
+### Requirements
+
+- [Docker](https://www.docker.com/), configure with [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/) to use as a non-root user.
+- [Poetry](https://python-poetry.org/) dependency manager.
 
 ## Usage
 
