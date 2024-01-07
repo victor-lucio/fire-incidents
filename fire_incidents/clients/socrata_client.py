@@ -10,20 +10,20 @@ class SocrataClient:
     """
 
     def __init__(self, domain: str) -> None:
-        """_summary_
+        """Contructor
 
-        :param domain: _description_
+        :param domain: The domain of the Socrata API (e.g. data.sfgov.org)
         :type domain: str
         """
         logger.info("Initializing Socrata client")
         self._client = Socrata(domain, None)
 
     def get_data(self, dataset: str, **filters) -> list:
-        """_summary_
+        """Get data from Socrata API
 
-        :param dataset: _description_
+        :param dataset: The dataset to get data from (e.g. wr8u-xric)
         :type dataset: str
-        :return: _description_
+        :return: data from Socrata API in a list of dictionaries
         :rtype: list
         """
         logger.info(f"Getting data from {dataset} dataset")
