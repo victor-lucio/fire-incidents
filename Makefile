@@ -42,7 +42,7 @@ check-format:
 
 .PHONY: run-load-fire-incidents-raw
 run-load-fire-incidents-raw:
-	poetry python fire_incidents/jobs/load_fire_incidents_raw.py $(RUN_DATE)
+	python fire_incidents/jobs/load_fire_incidents_raw.py --run_date $(RUN_DATE)
 
 .PHONY: run-dbt-models
 run-dbt-models:
