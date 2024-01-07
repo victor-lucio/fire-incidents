@@ -1,5 +1,5 @@
 from pandas import DataFrame
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 
 
 class SqlLoader:
@@ -30,11 +30,16 @@ class SqlLoader:
         Push data to Sql database
         """
         engine = create_engine(self.get_uri())
+
+        with engine.connect() as connection:
+            connection.execute(text(f"CREATE SCHEMA IF NOT EXISTS {schema};"))
+            connection.commit()
+
         df.to_sql(
             **kwargs,
             con=engine,
             schema=schema,
             name=table_name,
             index=False,
-            if_exists="append",
+            if_exists=kwargs.get("if_exists","append"),
         )
