@@ -1,6 +1,7 @@
 from fire_incidents.clients.socrata_client import SocrataClient
 from fire_incidents.loaders.postgres_loader import PostgresLoader
 from fire_incidents.utils.argparse import get_default_args
+import json
 from pandas import DataFrame
 from loguru import logger
 
@@ -24,6 +25,7 @@ class LoadFireIncidentRaw:
 
         # Convert to DataFrame, force string type
         logger.info("Transforming data")
+        data = [{"data": json.dumps(row), "date": row["incident_date"]} for row in data]
         data_df = DataFrame(data, dtype=str)
 
         # Load data
