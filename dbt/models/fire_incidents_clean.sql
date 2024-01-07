@@ -16,7 +16,7 @@ with source as (
 
   {% if is_incremental() %}
   where
-    date > (select max(incident_date) from {{ this }})
+    date::date > (select max(incident_date) from {{ this }})
   {% endif %}
 )
 
