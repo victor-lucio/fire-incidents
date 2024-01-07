@@ -54,7 +54,7 @@ class SqlLoader:
         engine = create_engine(self.get_uri())
 
         with engine.connect() as connection:
-            logger.info(f"Creating schema {schema}")
+            logger.info(f"Creating schema {schema} if not exists")
             connection.execute(text(f"CREATE SCHEMA IF NOT EXISTS {schema};"))
             connection.commit()
 

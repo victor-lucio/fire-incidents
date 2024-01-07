@@ -2,6 +2,7 @@ from fire_incidents.clients.socrata_client import SocrataClient
 from fire_incidents.loaders.postgres_loader import PostgresLoader
 from fire_incidents.utils.argparse import get_default_args
 from pandas import DataFrame
+from loguru import logger
 
 from fire_incidents.utils.secrets import Secrets
 
@@ -17,15 +18,16 @@ class LoadFireIncidentRaw:
 
     def run(self) -> None:
         # Get data from Socrata
+        logger.info("Extracting data")
         client = SocrataClient(DOMAIN)
-        data = client.get_data(
-            DATASET, where=f"{DATE_COL}='{self.run_date}T00:00:00'"
-        )
+        data = client.get_data(DATASET, where=f"{DATE_COL}='{self.run_date}T00:00:00'")
 
         # Convert to DataFrame, force string type
+        logger.info("Transforming data")
         data_df = DataFrame(data, dtype=str)
 
         # Load data
+        logger.info("Loading data")
         loader = PostgresLoader(
             username=Secrets.get("POSTGRES_USERNAME"),
             password=Secrets.get("POSTGRES_PASSWORD"),
@@ -34,6 +36,7 @@ class LoadFireIncidentRaw:
             port=5432,
         )
         loader.push_data(data_df, table_name="fire_incidents_raw", schema="raw")
+        logger.info("Finished job")
 
 
 if __name__ == "__main__":
