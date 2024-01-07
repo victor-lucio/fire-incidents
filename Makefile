@@ -4,14 +4,15 @@ export
 .PHONY: start-postgres
 start-postgres:
 	docker start warehouse || \
-    docker run --name warehouse \
-    -p 5432:5432 \
-    -e POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) \
-    -e POSTGRES_DB=$(POSTGRES_DATABASE) \
-    -d postgres
+	docker run --name warehouse \
+	-p 5432:5432 \
+	-e POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) \
+	-e POSTGRES_DB=$(POSTGRES_DATABASE) \
+	-d postgres
 
 .PHONY: spin-up
-spin-up: 
+spin-up:
+	poetry install
 	make start-postgres
 	cp profiles.yml ~/.dbt/profiles.yml
 	export $(cat .env | xargs)
@@ -38,3 +39,11 @@ format:
 .PHONY: check-format
 check-format:
 	ruff check .
+
+.PHONY: run-load-fire-incidents-raw
+run-load-fire-incidents-raw:
+	poetry python fire_incidents/jobs/load_fire_incidents_raw.py $(RUN_DATE)
+
+.PHONY: run-dbt-models
+run-dbt-models:
+	cd dbt && poetry run dbt run
