@@ -108,7 +108,8 @@ Here I created a really simple materialized table to log the number of incidents
 
 ## Contributing
 
-I'm using pre-commit with ruff library to lint the code.
+1. I'm using pre-commit with ruff library to lint the code.
+2. I've defined a CI for the tests using github workflow
 
 ## License
 
